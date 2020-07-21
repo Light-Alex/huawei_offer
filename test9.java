@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import sun.net.www.content.audio.basic;
-
 /**
  * 题目：扑克牌大小
  * 题目描述：扑克牌游戏大家应该都比较熟悉了，一副牌由54张组成，含3~A，2各4张，小王1张，大王1张。牌面从小到大用如下字符和字符串表示（其中，小写joker表示小王，大写JOKER表示大王）:)
