@@ -22,7 +22,7 @@ public class test8 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         LinkedHashMap<String, Integer> result = new LinkedHashMap<String, Integer>();
-        while(sc.hasNextLine()){
+        while(sc.hasNext()){
             String s = sc.nextLine();
             String file_path = s.split(" ")[0];
             // regex中 \ 需要用\\\\表示 \\\\ ->(java解析) \\ ->(regex解析) \
