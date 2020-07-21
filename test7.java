@@ -16,6 +16,8 @@ import java.util.Scanner;
 
    输出描述:
    对于每一次询问操作，在一行里面输出最高成绩.
+   
+   注意：Q和U中A, B的顺序可能有问题, 需要进行排序(从小到大)，否则会出现数组越界异常
 
    输入例子1:
    5 7
@@ -53,6 +55,12 @@ public class test7 {
                 char c = sc.next().charAt(0);
                 int a = sc.nextInt();
                 int b = sc.nextInt();
+                // 注意，Q和U中A, B的顺序可能有问题, 需要进行排序(从小到大)，否则会出现数组越界异常
+                if(a > b){
+                    int temp = a;
+                    a = b;
+                    b = temp;
+                }
                 // 获取最高分
                 if(c == 'Q'){
                     result.add(maxNum(Arrays.copyOfRange(grade, a - 1, b)));

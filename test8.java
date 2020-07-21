@@ -1,5 +1,11 @@
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * 题目：简单错误记录 题目描述：开发一个简单错误记录功能小模块，能够记录出错的代码所在的文件名称和行号。 处理:
@@ -21,7 +27,7 @@ import java.util.Scanner;
 public class test8 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        LinkedHashMap<String, Integer> result = new LinkedHashMap<String, Integer>();
+        HashMap<String, Integer> result = new HashMap<String, Integer>();
         while(sc.hasNext()){
             String s = sc.nextLine();
             String file_path = s.split(" ")[0];
@@ -41,9 +47,26 @@ public class test8 {
                 result.put(newName, result.get(newName) + 1);
             }
         }
+
+        // HashMap排序
+        // 将entrySet转换为List,然后重写比较器比较即可.这里可以使用List.sort(comparator),也可以使用Collections.sort(list,comparator)
+        // entry: 条目
+        Set<Entry<String, Integer>> entrys = result.entrySet();
+        // 通过构造函数传入参数
+        ArrayList<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(entrys);
+
+        // 使用Collections.sort(List<T> list, Comparator<? super T> c)方法对list进行排序, 需要重写 Comparator<T>类 中的 compare()方法
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>(){
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2){
+                // 降序排序
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+
         int k = 0;
-        for(String s : result.keySet()){
-            System.out.println(s + " " + result.get(s));
+        for(Map.Entry<String, Integer> entry : list){
+            System.out.println(entry.getKey() + " " + entry.getValue());
             k++;
             if(k == 9){
                 break;
